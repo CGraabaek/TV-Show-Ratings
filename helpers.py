@@ -51,13 +51,21 @@ def get_avg_rating_for_show(show):
             if rating is not None:
                 episode_ratings.append(rating)
 
-    return np.mean(episode_ratings)
+    return np.mean(episode_ratings),episode_ratings[-1]
 
 def get_rating_for_show(show):
     series = ia.get_movie(show)
-    rating = series["rating"]
-    return rating
+    return series["rating"]
 
 def get_show_title(show):
     series = ia.get_movie(show)
-    title = series["title"]
+    return series["title"]
+
+def get_last_episode_rating(show):
+    series = ia.get_movie(show)
+    ia.update(series, 'episodes')
+    
+
+    print(series['number of episodes'])
+
+    
